@@ -1,0 +1,12 @@
+:root {
+    --backgroundColor: #fff;
+    --customCardSelectBorder: 1px solid #D5D3D3;
+    --cardBorder: 1px solid #D5D3D3;
+    --cardBoxShadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    --backgroundSkeleton: linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, .5) 50%,
+        rgba(255, 255, 255, 0) 60%
+      ) #ededed;
+}

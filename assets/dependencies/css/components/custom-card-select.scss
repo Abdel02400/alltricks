@@ -1,0 +1,46 @@
+.custom-card-select {
+    width: 100%;
+    border: var(--customCardSelectBorder);
+    cursor: pointer;
+    position: relative;
+
+    .select-text {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    .select-list {
+        border: var(--customCardSelectBorder);
+        background-color: var(--backgroundColor);
+        position: absolute;
+        ul {
+            display: flex;
+            flex-direction: column;
+
+            li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: center;
+
+                .price {
+                    margin: 0;
+                    white-space: nowrap;
+                }
+            }
+
+            li:not(:last-child), .article-category-label {
+                border-bottom: var(--customCardSelectBorder);
+            }
+            
+            li span, .article-category-label {
+                padding: 5px 10px;
+            }
+
+            li {
+                list-style: none;
+            }
+        }
+    }
+}

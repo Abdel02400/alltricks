@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url($linkImg + '/dependencies/css/fonts/poppins-v19-latin-regular.eot'),
+         url($linkImg + '/dependencies/css/fonts/poppins-v19-latin-regular.eot?#iefix') format('embedded-opentype'),
+         url($linkImg + '/dependencies/css/fonts/poppins-v19-latin-regular.woff2') format('woff2'),
+         url($linkImg + '/dependencies/css/fonts/poppins-v19-latin-regular.woff') format('woff'),
+         url($linkImg + '/dependencies/css/fonts/poppins-v19-latin-regular.ttf') format('truetype'),
+  }
