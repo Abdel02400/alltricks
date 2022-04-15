@@ -16,7 +16,7 @@ function Card({article}) {
             <h2>{article.name}</h2>
             <p>{article.content}</p>
             <span className="price">{article.stocks[0].price} &euro;</span>
-            <CustomCardSelect defaultSelectText={defaultSelectText} data={data} />
+            <CustomCardSelect selectLabel={article.select_label} defaultSelectText={defaultSelectText} data={data} />
         </div>
     )
 }

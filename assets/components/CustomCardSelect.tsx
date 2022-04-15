@@ -9,14 +9,15 @@ interface Data {
 }
 
 interface CustomCardSelectProps {
-    defaultSelectText: string;
+    defaultSelectText: string,
+    selectLabel: string,
     data: Data[]
 }
 
 //const dropDown = import.meta.env.VITE_IMG_URL + '/dependencies/images/drop-down.svg';
 const dropDown = 'http://localhost:3000/assets/dependencies/images/drop-down.svg';
 
-function CustomCardSelect({defaultSelectText, data}: CustomCardSelectProps) {
+function CustomCardSelect({defaultSelectText, selectLabel, data}: CustomCardSelectProps) {
     const [showList, setShowList] = useState<boolean>(false)
     const [selectText, setSelectText] = useState<string>(defaultSelectText)
 
@@ -46,7 +47,7 @@ function CustomCardSelect({defaultSelectText, data}: CustomCardSelectProps) {
             {showList && (
                 <div className="select-list">
                     <ul>
-                        <span className="article-category-label">Taille :</span>
+                        <span className="article-category-label">{selectLabel} :</span>
                         {data.map(option => {
                             return (
                                 <li
