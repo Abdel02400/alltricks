@@ -5,8 +5,8 @@ import CardSkeleton from './components/skeleton/CardSkeleton'
 import './dependencies/css/app.scss'
 
 function App() {
-  const [onLoadArticle, setOnLoadArticle] = useState<boolean>(false)
-  const [articles, setArticles] = useState()
+  const [onLoadArticle, setOnLoadArticle] = useState<boolean>(true)
+  const [articles, setArticles] = useState({})
 
   const loadArticle = async () => {
     let requestOptions = {method: 'GET'}
@@ -15,6 +15,7 @@ function App() {
     if (response.status === 200) {
       let articles = await response.json()
       setArticles(articles)
+      setOnLoadArticle(false)
     }
   }
   
@@ -29,16 +30,25 @@ function App() {
     return cardSkeleton
   }
 
+  const renderCard = () => {
+    let card = []
+    
+    if (Object.keys(articles).length > 0) {
+      Object.entries(articles).forEach(([key, value]) => {
+        card.push(<Card article={value} key={key} />)
+    });
+    }
+  
+    return card
+  }
+
   useEffect(() => {
     loadArticle()
   }, [])
 
   return (
     <div className="articles container">
-      {onLoadArticle ? renderCardSkeleton() : 
-      (
-        <Card />
-      )}
+      {onLoadArticle ? renderCardSkeleton() : renderCard()}
     </div>
   )
 }

@@ -24,9 +24,45 @@ class Source
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     private ?string $name = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $databaseType = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $databaseDomain = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $databasePort = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $databaseUser = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $databasePassword = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $databaseName = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SourceCategory", inversedBy="sources")
@@ -67,6 +103,114 @@ class Source
     public function setName(?string $name): Source
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDatabaseType(): ?string
+    {
+        return $this->databaseType;
+    }
+
+    /**
+     * @param string|null $databaseType
+     * @return Source
+     */
+    public function setDatabaseType(?string $databaseType): Source
+    {
+        $this->databaseType = $databaseType;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDatabaseDomain(): ?string
+    {
+        return $this->databaseDomain;
+    }
+
+    /**
+     * @param string|null $databaseDomain
+     * @return Source
+     */
+    public function setDatabaseDomain(?string $databaseDomain): Source
+    {
+        $this->databaseDomain = $databaseDomain;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDatabasePort(): ?string
+    {
+        return $this->databasePort;
+    }
+
+    /**
+     * @param string|null $databasePort
+     * @return Source
+     */
+    public function setDatabasePort(?string $databasePort): Source
+    {
+        $this->databasePort = $databasePort;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDatabaseUser(): ?string
+    {
+        return $this->databaseUser;
+    }
+
+    /**
+     * @param string|null $databaseUser
+     * @return Source
+     */
+    public function setDatabaseUser(?string $databaseUser): Source
+    {
+        $this->databaseUser = $databaseUser;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDatabasePassword(): ?string
+    {
+        return $this->databasePassword;
+    }
+
+    /**
+     * @param string|null $databasePassword
+     * @return Source
+     */
+    public function setDatabasePassword(?string $databasePassword): Source
+    {
+        $this->databasePassword = $databasePassword;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDatabaseName(): ?string
+    {
+        return $this->databaseName;
+    }
+
+    /**
+     * @param string|null $databaseName
+     * @return Source
+     */
+    public function setDatabaseName(?string $databaseName): Source
+    {
+        $this->databaseName = $databaseName;
         return $this;
     }
 

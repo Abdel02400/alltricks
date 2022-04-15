@@ -1,0 +1,16 @@
+<articles>
+   <article>
+      <name>HOKA ONE ONE 2</name>
+      <content>CHAUSSURES DE RUNNING HOKA ONE ONE BONDI X LIMITED EDITION BLANC / JAUNE</content>
+      <img_src>https://media.alltricks.com/medium/20784086142f47c7a2a64.31769644.jpg</img_src>
+      <select_label>Pointure</select_label>
+      <stocks>
+        <stock>
+            <id>12</id>
+            <quantity>5</quantity>
+            <price>120.00</price>
+            <size>38</size>
+        </stock>
+      </stocks>
+   </article>
+</articles>

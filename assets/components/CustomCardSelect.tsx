@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../dependencies/css/components/custom-card-select.scss'
 
 interface Data {
@@ -18,6 +18,7 @@ const dropDown = 'http://localhost:3000/assets/dependencies/images/drop-down.svg
 
 function CustomCardSelect({defaultSelectText, data}: CustomCardSelectProps) {
     const [showList, setShowList] = useState<boolean>(false)
+    const [selectText, setSelectText] = useState<string>(defaultSelectText)
 
     const getQuantityLabel = (quantity: number): string => {
         if (quantity === 0) return 'Epuisé'
@@ -27,14 +28,19 @@ function CustomCardSelect({defaultSelectText, data}: CustomCardSelectProps) {
         return 'En stock'
     }
 
-    const handleClick = () => {
+    const handleClickShowList = () => {
         setShowList(!showList)
     }
 
+    const handleClick = (e) => {
+        console.log(e.target)
+        setSelectText(e.target.getAttribute("data-value"))
+    }
+
     return (
-        <div className="custom-card-select" onClick={handleClick}>
+        <div className="custom-card-select" onClick={handleClickShowList}>
             <div className="select-text">
-                {defaultSelectText}
+                {selectText}
                 <img src={dropDown} alt="drop-down" />
             </div>
             {showList && (
@@ -44,8 +50,11 @@ function CustomCardSelect({defaultSelectText, data}: CustomCardSelectProps) {
                         {data.map(option => {
                             return (
                                 <li
+                                    className="select-option"
                                     data-name={option.id}
+                                    data-value={option.size}
                                     key={option.id}
+                                    onClick={e => handleClick(e)}
                                 >
                                     <span>{option.size}</span>
                                     <span>{getQuantityLabel(option.quantity)}</span>

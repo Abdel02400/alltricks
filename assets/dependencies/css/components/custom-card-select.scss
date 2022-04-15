@@ -11,9 +11,13 @@
     }
 
     .select-list {
+        width: 100%;
         border: var(--customCardSelectBorder);
         background-color: var(--backgroundColor);
         position: absolute;
+        z-index: 2;
+        max-height: 200px;
+        overflow-y: auto;
         ul {
             display: flex;
             flex-direction: column;
@@ -36,6 +40,7 @@
             
             li span, .article-category-label {
                 padding: 5px 10px;
+                pointer-events: none;
             }
 
             li {

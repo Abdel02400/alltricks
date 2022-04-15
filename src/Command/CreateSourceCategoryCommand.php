@@ -22,12 +22,16 @@ class CreateSourceCategoryCommand extends Command
      */
     public function __construct(ManagerRegistry $doctrine)
     {
-        $this->doctrine = $doctrine;
         parent::__construct();
+        $this->doctrine = $doctrine;
     }
 
+    /**
+     * @return void
+     */
     protected function configure()
     {
+        $this->setHelp('Cette commande permet de générer les sources category (RSS, BDD)');
     }
 
     /**
@@ -35,21 +39,27 @@ class CreateSourceCategoryCommand extends Command
      * @param OutputInterface $output
      * @return integer
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
-        $sourceCategoryBDD = (new SourceCategory())->setName('BDD');
-        $sourceCategoryRSS = (new SourceCategory())->setName('RSS');
+    protected function execute(
+        InputInterface $input, 
+        OutputInterface $output
+    ): int
+    {        
+        $sourceCategoryBDD = (new SourceCategory())
+                                ->setName('BDD');
+                                
+        $sourceCategoryRSS = (new SourceCategory())
+                                ->setName('RSS');
 
         try {
             $this->doctrine->getManager()->persist($sourceCategoryBDD);
             $this->doctrine->getManager()->persist($sourceCategoryRSS);
             $this->doctrine->getManager()->flush();
         } catch (\Exception $e) {
-            $output->writeln('L\'ajout des sources category a échoué : ' . $e->getMessage());
+            $output->writeln('<fg=black;bg=red>L\'ajout des sources category a échoué : ' . $e->getMessage() . '</>');
             return Command::FAILURE;
         }
         
-        $output->writeln('L\'ajout des sources category a été effectué avec succès');
+        $output->writeln('<fg=black;bg=green>L\'ajout des sources category a été effectué avec succès</>');
         return Command::SUCCESS;
     }
 }

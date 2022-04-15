@@ -2,10 +2,11 @@
 
 namespace App\Controller\Api;
 
-use Doctrine\Persistence\ManagerRegistry;
+use App\Service\ArticleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,10 +26,21 @@ class ApiArticle extends AbstractController
     public function getArticles(
         Request $request,
         SerializerInterface $serializer,
-        ManagerRegistry $doctrine 
+        ArticleService $articleService
     ): JsonResponse
     {
-        $response = new JsonResponse(['data' => 'ok']);
+        $articlesFromDatabase = $articleService->getArticlesFromDatabase();
+        $articlesFromRSS = $articleService->getArticlesFromRSS();
+
+        $result = array_merge($articlesFromDatabase, $articlesFromRSS);
+        
+        $response = new JsonResponse();
+
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->setData($result);
+
+        sleep(2);
+
         return $response;
     }
 }

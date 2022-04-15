@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,16 @@ class Article
      * @ORM\JoinColumn(name="article_category_id", referencedColumnName="id", nullable=false)
      */
     private ?ArticleCategory $articleCategory = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Stock", mappedBy="article")
+     */
+    private $stocks;
+
+    public function __construct()
+    {
+        $this->stocks = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -143,6 +155,43 @@ class Article
     public function setArticleCategory(?ArticleCategory $articleCategory): Article
     {
         $this->articleCategory = $articleCategory;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stock[]
+     */
+    public function getStocks(): Collection
+    {
+        return $this->stocks;
+    }
+
+    /**
+     * @param Stock $stock
+     * @return Article
+     */
+    public function addStock(Stock $stock): Article
+    {
+        if (!$this->stocks->contains($stock)) {
+            $this->stocks[] = $stock;
+            $stock->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Stock $stock
+     * @return Article
+     */
+    public function removeStock(Stock $stock): Article
+    {
+        if ($this->stocks->contains($stock)) {
+            $this->stocks->removeElement($stock);
+            if ($stock->getArticle() === $this) {
+                $stock->getArticle(null);
+            }
+        }
         return $this;
     }
 }

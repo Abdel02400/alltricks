@@ -3,7 +3,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    min-width: 350px;
+    max-width: 400px;
     border: var(--cardBorder);
     border-radius: 10px;
     box-shadow: var(--cardBoxShadow);
@@ -16,12 +16,13 @@
     .img {
         width: 100%;
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
     }
     
 }
 
 .card.skeleton {
+    min-width: 350px;
     .img, h2, p, .custom-card-select, .price {
         background: var(--backgroundSkeleton);
         background-size: 200% 100%;
